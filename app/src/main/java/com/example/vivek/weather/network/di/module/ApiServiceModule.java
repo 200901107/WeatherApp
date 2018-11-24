@@ -20,6 +20,7 @@ public class ApiServiceModule {
         return BuildConfig.WeatherUrl;
     }
 
+    // central api service
     @Provides
     @ApplicationScoped
     public ApiService crsApiService(@ApiServiceQualifier Retrofit retrofit) {

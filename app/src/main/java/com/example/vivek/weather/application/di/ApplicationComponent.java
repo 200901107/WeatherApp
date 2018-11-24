@@ -6,6 +6,7 @@ import com.example.vivek.weather.application.components.ResourceProvider;
 import com.example.vivek.weather.application.di.modules.ApplicationModule;
 import com.example.vivek.weather.application.di.qualifier.ApplicationContext;
 import com.example.vivek.weather.application.di.scope.ApplicationScoped;
+import com.example.vivek.weather.application.schedulers.SchedulerProvider;
 import com.example.vivek.weather.network.ApiService;
 
 import dagger.Component;
@@ -20,5 +21,7 @@ public interface ApplicationComponent {
     ResourceProvider getResourceProvider();
 
     ApiService getApiService();
+
+    SchedulerProvider getSchedulerProvider();
 
 }
