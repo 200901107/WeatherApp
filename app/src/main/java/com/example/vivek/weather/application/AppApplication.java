@@ -35,7 +35,4 @@ public class AppApplication extends Application{
         return mComponent;
     }
 
-    public ApiService getApiService() {
-        return getComponent().getApiService();
-    }
 }
