@@ -38,15 +38,21 @@ public class WeatherPresenter implements WeatherContract.Presenter{
     }
 
     public void fetchWeatherForeCasts(String parameter, String futureDays) {
-        mDisposables.add(weatherInteractor.fetchWeatherForeCasts(parameter, futureDays)
-                .subscribeOn(mSchedulerProvider.io()).observeOn(mSchedulerProvider.ui())
-                .subscribe(response -> {
-                    onForeCastFetched(response);
-                },throwable -> {
-                    if (mView != null)
-                        mView.onWeatherFetchFailed();
-                    throwable.printStackTrace();
-                }));
+        if (parameter != null && futureDays != null) {
+            mDisposables.add(weatherInteractor.fetchWeatherForeCasts(parameter, futureDays)
+                    .subscribeOn(mSchedulerProvider.io()).observeOn(mSchedulerProvider.ui())
+                    .subscribe(this::onForeCastFetched, throwable -> {
+                        onForesCastFetchFailed();
+                        throwable.printStackTrace();
+                    }));
+        } else {
+            onForesCastFetchFailed();
+        }
+    }
+
+    private void onForesCastFetchFailed() {
+        if (mView != null)
+            mView.onWeatherFetchFailed();
     }
 
     private void onForeCastFetched(ForecastModel forecastModel) {

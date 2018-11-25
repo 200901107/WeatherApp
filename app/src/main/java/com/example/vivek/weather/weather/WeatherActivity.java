@@ -43,7 +43,7 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
     private RecyclerView recyclerView;
     private View errorLayout;
     private ProgressBar progressBar;
-    private View contentView, retryButton;
+    private View contentView;
 
     // lists for permissions
     private ArrayList<String> permissionsToRequest;
@@ -84,8 +84,10 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
         recyclerView = findViewById(R.id.forecastList);
         errorLayout = findViewById(R.id.error_layout);
         contentView = findViewById(R.id.contentView);
-        retryButton = findViewById(R.id.retryButton);
+
+        View retryButton = findViewById(R.id.retryButton);
         retryButton.setOnClickListener(this);
+
         progressBar = findViewById(R.id.progress);
         progressBar.setIndeterminate(true);
         progressBar.setVisibility(View.VISIBLE);
