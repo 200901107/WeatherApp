@@ -1,40 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".weather.WeatherActivity">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/current_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_56"/>
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_10"
-        android:layout_gravity="center_horizontal"/>
-
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_analysis"
+    <RelativeLayout
+        android:id="@+id/contentView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_62"
-        card_view:cardCornerRadius="@dimen/card_view_radius">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/forecastList"
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/current_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_56"
+            android:fontFamily="@string/roboto_black"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/line_spacing_112"
+            android:textSize="@dimen/font_size_96sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/region"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/current_temp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_10"
+            android:fontFamily="@string/roboto_thin"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/line_spacing_52"
+            android:textSize="@dimen/font_size_36sp" />
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_analysis"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/margin_16"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_below="@+id/region"
+            android:layout_marginTop="@dimen/margin_62"
+            card_view:cardCornerRadius="@dimen/card_view_radius">
 
-    </android.support.v7.widget.CardView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/forecastList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_16" />
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/error_layout"
+        layout="@layout/error_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="@dimen/width_96"
+        android:layout_height="@dimen/height_96"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/ic_loading" />
 
 </LinearLayout>

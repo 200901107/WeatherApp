@@ -2,6 +2,7 @@ package com.example.vivek.weather.weather.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -47,15 +48,18 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherI
 
     class WeatherItemViewHolder extends RecyclerView.ViewHolder{
 
+        View itemView;
         AppCompatTextView dayTextView, temperatureTextView;
 
         WeatherItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            dayTextView = itemView.findViewById(R.id.dayTextView);
-            temperatureTextView = itemView.findViewById(R.id.tempTextView);
+            this.itemView = itemView;
+            this.dayTextView = itemView.findViewById(R.id.dayTextView);
+            this.temperatureTextView = itemView.findViewById(R.id.tempTextView);
         }
 
         void onBind(DayForeCastModel dayForeCastModel) {
+            itemView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bg_bottom_border_grey));
             dayTextView.setText(Utils.getDayForDate(dayForeCastModel.getDate(), Locale.getDefault()));
             temperatureTextView.setText(mContext.getString(R.string.temp_text, dayForeCastModel.getForeCastDetails().getAvgTemperature()));
         }

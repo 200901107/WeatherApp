@@ -10,5 +10,5 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     @GET("forecast.json/")
-    Observable<ForecastModel> fetchForeCast(@Query("key") String apiKey, @Query("q") String zipCode, @Query("days") String days);
+    Observable<ForecastModel> fetchForeCast(@Query("key") String apiKey, @Query("q") String parameter, @Query("days") String days);
 }

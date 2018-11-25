@@ -70,5 +70,8 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
 
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+
     compile files('libs/WeatherLibrary.rar')
 }
+

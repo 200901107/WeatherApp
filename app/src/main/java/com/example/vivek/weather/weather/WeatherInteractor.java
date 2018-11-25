@@ -17,7 +17,7 @@ public class WeatherInteractor {
         this.resourceProvider = resourceProvider;
     }
 
-    public Observable<ForecastModel> fetchWeatherForeCasts(String zipCode, String futureDays) {
-        return apiService.fetchForeCast(AuthInterceptor.getApiKey(), zipCode, futureDays);
+    public Observable<ForecastModel> fetchWeatherForeCasts(String parameter, String futureDays) {
+        return apiService.fetchForeCast(AuthInterceptor.getApiKey(), parameter, futureDays);
     }
 }

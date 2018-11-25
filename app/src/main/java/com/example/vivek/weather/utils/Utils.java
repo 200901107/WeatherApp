@@ -10,6 +10,7 @@ import java.util.Locale;
 
 public class Utils {
 
+    public static final String NUM_OF_DAYS_OF_FORECAST = "5";
     public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
 
     public static Locale getCurrentLocale(Context context) {
