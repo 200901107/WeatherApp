@@ -13,7 +13,10 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 
 import com.example.vivek.weather.R;
@@ -82,6 +85,8 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
 
     private void initViews() {
         recyclerView = findViewById(R.id.forecastList);
+        recyclerView.setBackground(Utils.generateBackgroundWithShadow(recyclerView, R.color.white,
+                R.dimen.card_view_radius, R.color.colorPrimaryDark, R.dimen.elevation, Gravity.TOP));
         errorLayout = findViewById(R.id.error_layout);
         contentView = findViewById(R.id.contentView);
 
@@ -201,7 +206,7 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
         progressBar.setVisibility(View.GONE);
         errorLayout.setVisibility(View.GONE);
         contentView.setVisibility(View.VISIBLE);
-
+        Animation animation = AnimationUtils.loadAnimation(WeatherActivity.this, R.anim.translate_anim);
         if (forecastModel != null) {
             List<DayForeCastModel> dayForeCastModels = forecastModel.getForeCastModel().getDayForeCastModels();
 
@@ -212,6 +217,11 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
                 ((AppCompatTextView) findViewById(R.id.current_temp)).setText(getString(R.string.current_temp, dayForeCastModels.get(0).getForeCastDetails().getAvgTemperature()));
                 recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
                 recyclerView.setAdapter(new WeatherAdapter(dayForeCastModels.subList(1, 5), this));
+                recyclerView.postDelayed(() -> {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    recyclerView.startAnimation(animation);
+                }, 500);
+
             }
         }
     }
