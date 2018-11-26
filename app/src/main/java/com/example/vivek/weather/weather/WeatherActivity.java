@@ -236,9 +236,7 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
 
     @Override
     public void onLocationChanged(Location location) {
-        if (weatherPresenter != null && location != null) {
-            weatherPresenter.fetchWeatherForeCasts(getString(R.string.location_parameter, location.getLatitude(), location.getLongitude()), Utils.NUM_OF_DAYS_OF_FORECAST);
-        }
+
     }
 
     @Override
