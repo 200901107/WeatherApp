@@ -21,6 +21,7 @@ import io.reactivex.schedulers.TestScheduler;
 
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -64,13 +65,14 @@ public class WeatherPresenterTest {
         doReturn(Observable.just(forecastModel)).when(mInteractor).fetchWeatherForeCasts(anyString(), anyString());
         mPresenter.fetchWeatherForeCasts(anyString(), anyString());
         testScheduler.triggerActions();
-        verify(mView).onWeatherForeCastFetched(forecastModel);
+        verify(mView, times(1)).onWeatherForeCastFetched(forecastModel);
     }
 
     @Test
     public void testForecastFailureCase() {
         mPresenter.fetchWeatherForeCasts(null, null);
         testScheduler.triggerActions();
-        verify(mView).onWeatherFetchFailed();
+        verify(mView, times(1)).onWeatherFetchFailed();
     }
+
 }

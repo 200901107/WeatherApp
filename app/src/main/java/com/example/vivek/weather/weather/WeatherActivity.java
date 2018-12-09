@@ -24,6 +24,7 @@ import com.example.vivek.weather.application.AppApplication;
 import com.example.vivek.weather.application.BaseActivity;
 import com.example.vivek.weather.location.ILocationUpdates;
 import com.example.vivek.weather.location.LocationManager;
+import com.example.vivek.weather.utils.espressoutils.EspressoIdlingResource;
 import com.example.vivek.weather.utils.Utils;
 import com.example.vivek.weather.weather.adapter.WeatherAdapter;
 import com.example.vivek.weather.weather.models.DayForeCastModel;
@@ -221,9 +222,10 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
                     recyclerView.setVisibility(View.VISIBLE);
                     recyclerView.startAnimation(animation);
                 }, 500);
-
             }
+            EspressoIdlingResource.decrement();
         }
+
     }
 
     @Override
@@ -232,6 +234,7 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
         contentView.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
         errorLayout.setVisibility(View.VISIBLE);
+        EspressoIdlingResource.decrement();
     }
 
     @Override
@@ -245,6 +248,7 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
     }
 
     private void fetchForecast() {
+        EspressoIdlingResource.increment();
         if (weatherPresenter != null && LocationManager.getInstance().getLastLocation() != null) {
             double latitude = LocationManager.getInstance().getLastLocation().getLatitude();
             double longitude = LocationManager.getInstance().getLastLocation().getLongitude();
